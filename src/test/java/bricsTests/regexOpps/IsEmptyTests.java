@@ -1,9 +1,11 @@
 package test.java.bricsTests.regexOpps;
 
 import dk.brics.automaton.Automaton;
+import dk.brics.automaton.BasicAutomata;
 import dk.brics.automaton.BasicOperations;
 import dk.brics.automaton.RegExp;
 import dk.brics.automaton.State;
+import dk.brics.automaton.Transition;
 import test.java.bricsTests.RandomRegex;
 import test.java.bricsTests.Validator;
 
@@ -20,17 +22,6 @@ public class IsEmptyTests {
         Assert.assertTrue("isEmpty did not recognise Automaton.makeEmpty()", BasicOperations.isEmpty(automatonA));
     }
     
-    @Test
-    public void emptlyRegExp(){
-    	Automaton automatonA = new RegExp("").toAutomaton();
-    	Assert.assertTrue("isEmpty did not recognise empty regexp", BasicOperations.isEmpty(automatonA));
-    }
-    
-    @Test
-    public void nullRegExp(){
-    	Automaton automatonA = new RegExp(null).toAutomaton();
-    	Assert.assertTrue("isEmpty did not recognise null regexp", BasicOperations.isEmpty(automatonA));
-    }
     
     @Test
     public void notEmptlyRegExp(){
@@ -92,10 +83,54 @@ public class IsEmptyTests {
     
     private void checkrandomRegexNotEmptyTest(Validator validator, String reg1){
         Automaton automatonA = new RegExp(reg1).toAutomaton();
-        if (automatonA.getShortestExample(true)!=null) {
-        	validator.addCheck(!BasicOperations.isEmpty(automatonA) ,
-        			"the regex: " + reg1 + " resulted in empty language although is shouldnt have.");
-        }   	
+        validator.addCheck(!BasicOperations.isEmpty(automatonA) ,
+    			"the regex: " + reg1 + " resulted in empty language although is shouldnt have.");  	
     }
+    
+    // WHITE BOX TESTS
+//    public static boolean isEmpty(Automaton a) {
+//		if (a.isSingleton())
+//			return false;
+//		return !a.initial.accept && a.initial.transitions.isEmpty();
+//	}
+    @Test
+    public void makeSingletonTest(){ // a.isSingleton()==True 
+    	Automaton automatonA = BasicAutomata.makeString("Talya");
+    	Assert.assertFalse("condition 1 in isEmpty failed", BasicOperations.isEmpty(automatonA));
+    }
+    
+    @Test
+ // a.isSingleton()==False,  !a.initial.accept==False
+    public void notSingletonInitialAccept(){ 
+    	State init = new State();
+    	init.setAccept(true);
+    	Automaton automatonA = new Automaton();
+    	automatonA.setInitialState(init);
+    	Assert.assertFalse("condition 2 in isEmpty failed", BasicOperations.isEmpty(automatonA));
+    }
+    
+    // a.isSingleton()==False,  !a.initial.accept==True, a.initial.transitions.isEmpty()==False
+    public void notSingletonNotInitialAccept(){ // a.isSingleton()==False,  !a.initial.accept==False
+    	State init = new State();
+    	State fin = new State();
+    	init.setAccept(false);
+    	fin.setAccept(false);
+    	init.addTransition(new Transition('t', fin));
+    	Automaton automatonA = new Automaton();
+    	automatonA.setInitialState(init);
+    	Assert.assertFalse("condition 3 in isEmpty failed", BasicOperations.isEmpty(automatonA));
+    }
+
+    
+ // a.isSingleton()==False,  !a.initial.accept==True, a.initial.transitions.isEmpty()==True
+    public void notSingletonNotInitialAcceptIsEmptyTrans(){ // a.isSingleton()==False,  !a.initial.accept==False
+    	State init = new State();
+    	init.setAccept(false);
+    	Automaton automatonA = new Automaton();
+    	automatonA.setInitialState(init);
+    	Assert.assertFalse("condition 2+3 in isEmpty failed", BasicOperations.isEmpty(automatonA));
+    }
+    
+    
 }
 
