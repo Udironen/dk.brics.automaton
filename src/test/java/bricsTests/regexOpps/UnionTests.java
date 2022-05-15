@@ -9,6 +9,8 @@ import org.junit.Test;
 import test.java.bricsTests.RandomRegex;
 import test.java.bricsTests.Validator;
 
+import java.util.List;
+
 
 public class UnionTests {
 
@@ -17,8 +19,8 @@ public class UnionTests {
     public void checkFirstOfUnionTest(){
         Validator validator = Validator.getValidator();
         for (int i = 0; i < 1000; ++i){
-            String firstRegex = RandomRegex.getRandRegEx();
-            String secondRegex = RandomRegex.getRandRegEx();
+            RandomRegex firstRegex = RandomRegex.getRandRegEx();
+            RandomRegex secondRegex = RandomRegex.getRandRegEx();
             checkFirstRegexOfUnion(validator, firstRegex, secondRegex, true);
         }
         Assert.assertTrue(validator.getMessage(), validator.isValid());
@@ -28,30 +30,34 @@ public class UnionTests {
     public void checkSecondOfUnionTest(){
         Validator validator = Validator.getValidator();
         for (int i = 0; i < 1000; ++i){
-            String firstRegex = RandomRegex.getRandRegEx();
-            String secondRegex = RandomRegex.getRandRegEx();
+            RandomRegex firstRegex = RandomRegex.getRandRegEx();
+            RandomRegex secondRegex = RandomRegex.getRandRegEx();
             checkFirstRegexOfUnion(validator, firstRegex, secondRegex, false);
         }
         Assert.assertTrue(validator.getMessage(), validator.isValid());
     }
 
-    private void checkFirstRegexOfUnion(Validator validator, String reg1, String reg2, boolean first){
-        Automaton automatonA = new RegExp(reg1).toAutomaton();
-        Automaton automatonB = new RegExp(reg2).toAutomaton();
+    private void checkFirstRegexOfUnion(Validator validator, RandomRegex reg1, RandomRegex reg2, boolean first){
+        Automaton automatonA = new RegExp(reg1.getRegex()).toAutomaton();
+        Automaton automatonB = new RegExp(reg2.getRegex()).toAutomaton();
         Automaton unionAB = BasicOperations.union(automatonA, automatonB);
-        String AorBString = first ? automatonA.getShortestExample(true) :
-                                    automatonB.getShortestExample(true);
-        System.out.println("regex: " + reg1 + " union " + reg2 + "\n" +
-                "random string from" + (first ? "first " : "second ") + "regex domain: " + AorBString);
-        validator.addCheck(unionAB.run(AorBString) ,
-                "regex: " + reg1 + " union " + reg2 + " did not accept string " + AorBString
-                        + "although is should have.");
+        List<String> strings = first ? reg1.getStrings() : reg2.getStrings();
+        for (String aOrBString : strings) {
+            System.out.println("regex: " + reg1.getRegex() + " union " + reg2.getRegex() + "\n" +
+                    "random string from" + (first ? " first " : " second ") + "regex domain: " + aOrBString + "\n");
+            validator.addCheck(unionAB.run(aOrBString),
+                    "regex: " + reg1.getRegex() + " union " + reg2.getRegex() + " did not accept string " + aOrBString
+                            + " although is should have.");
+        }
     }
 
 
     @Test
     public void anotherUnionTest(){
-
+        Automaton automatonA = new RegExp("a").toAutomaton();
+        Automaton automatonB = new RegExp("b").toAutomaton();
+        Automaton ab = new RegExp("a^b").toAutomaton();
+        Assert.assertTrue(ab.run("ab"));
     }
 
     public boolean checkUnionOperation(String reg1, String reg2, String checkString){
