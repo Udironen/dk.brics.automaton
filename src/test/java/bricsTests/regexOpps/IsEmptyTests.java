@@ -88,11 +88,12 @@ public class IsEmptyTests {
     }
     
     // WHITE BOX TESTS
-//    public static boolean isEmpty(Automaton a) {
-//		if (a.isSingleton())
-//			return false;
-//		return !a.initial.accept && a.initial.transitions.isEmpty();
-//	}
+    
+   /*public static boolean isEmpty(Automaton a) {
+		if (a.isSingleton())
+			return false;
+		return !a.initial.accept && a.initial.transitions.isEmpty();
+	}*/
     @Test
     public void makeSingletonTest(){ // a.isSingleton()==True 
     	Automaton automatonA = BasicAutomata.makeString("Talya");
