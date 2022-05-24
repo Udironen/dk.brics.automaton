@@ -1,11 +1,12 @@
 package test.java.bricsTests;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 public class RandomRegex {
-    private final String regex;
+    private String regex;
     private final List<String> strings;
 
     private RandomRegex(String regex, List<String> strings){
@@ -56,7 +57,12 @@ public class RandomRegex {
         return alphabet.charAt(random.nextInt(alphabet.length()));
     }
 
-    public static RandomRegex getRandRegEx(){
+    public static RandomRegex getRandRegexSingleton(){
+        String randString = getRandString();
+        return new RandomRegex(randString, Collections.singletonList(randString));
+    }
+
+    public static RandomRegex getRandRegex(){
         List<String> genStrings = new ArrayList<>();
         ArrayList<String> tempStrings = new ArrayList<>();
         boolean toConcat = false;
@@ -131,19 +137,26 @@ public class RandomRegex {
         return new RandomRegex(sb.toString(), genStrings);
     }
 
-    private static ArrayList<String> getEmptyStrings(){
-        ArrayList<String> emptyStrings = new ArrayList<>();
-        for (int i = 0; i < 5; ++i) {
-            emptyStrings.add("");
-        }
-        return emptyStrings;
-    }
-
     public String getRegex() {
         return regex;
     }
 
     public List<String> getStrings() {
         return strings;
+    }
+
+    public static RandomRegex getEmptyRegex(){
+        return new RandomRegex("#", new ArrayList<>());
+    }
+
+    public static RandomRegex getEmptyStringRegex(){
+        return new RandomRegex("()", Collections.singletonList(""));
+    }
+
+    public static RandomRegex getRandRegexWithEmptyString(){
+        RandomRegex randomRegex = getRandRegex();
+        randomRegex.regex = randomRegex.regex.concat("|()");
+        randomRegex.strings.add("");
+        return randomRegex;
     }
 }

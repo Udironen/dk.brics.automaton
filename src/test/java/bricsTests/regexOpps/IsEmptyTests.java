@@ -57,14 +57,14 @@ public class IsEmptyTests {
     public void randomRegexAndComplementTest(){
         Validator validator = Validator.getValidator();
         for (int i = 0; i < 1000; ++i){
-        	RandomRegex regex = RandomRegex.getRandRegEx();
+            String regex = RandomRegex.getRandRegex().getRegex();
             checkrandomRegexAndComplementTest(validator, regex);
         }
         Assert.assertTrue(validator.getMessage(), validator.isValid());
     }
     
-    private void checkrandomRegexAndComplementTest(Validator validator, RandomRegex reg1){
-        Automaton automatonA = new RegExp(reg1.getRegex()).toAutomaton();
+    private void checkrandomRegexAndComplementTest(Validator validator, String reg1){
+        Automaton automatonA = new RegExp(reg1).toAutomaton();
         Automaton automatonB = automatonA.complement();
         Automaton intersection = automatonA.intersection(automatonB);
         validator.addCheck(BasicOperations.isEmpty(intersection) ,
@@ -75,25 +75,24 @@ public class IsEmptyTests {
     public void randomRegexNotEmptyTest(){
         Validator validator = Validator.getValidator();
         for (int i = 0; i < 1000; ++i){
-        	RandomRegex regex = RandomRegex.getRandRegEx();
+            String regex = RandomRegex.getRandRegex().getRegex();
             checkrandomRegexNotEmptyTest(validator, regex);
         }
         Assert.assertTrue(validator.getMessage(), validator.isValid());
     }
     
-    private void checkrandomRegexNotEmptyTest(Validator validator, RandomRegex reg1){
-        Automaton automatonA = new RegExp(reg1.getRegex()).toAutomaton();
+    private void checkrandomRegexNotEmptyTest(Validator validator, String reg1){
+        Automaton automatonA = new RegExp(reg1).toAutomaton();
         validator.addCheck(!BasicOperations.isEmpty(automatonA) ,
     			"the regex: " + reg1 + " resulted in empty language although is shouldnt have.");  	
     }
     
     // WHITE BOX TESTS
-    
-   /*public static boolean isEmpty(Automaton a) {
-		if (a.isSingleton())
-			return false;
-		return !a.initial.accept && a.initial.transitions.isEmpty();
-	}*/
+//    public static boolean isEmpty(Automaton a) {
+//		if (a.isSingleton())
+//			return false;
+//		return !a.initial.accept && a.initial.transitions.isEmpty();
+//	}
     @Test
     public void makeSingletonTest(){ // a.isSingleton()==True 
     	Automaton automatonA = BasicAutomata.makeString("Talya");
@@ -112,7 +111,7 @@ public class IsEmptyTests {
     
     // a.isSingleton()==False,  !a.initial.accept==True, a.initial.transitions.isEmpty()==False
     @Test
-    public void notSingletonNotInitialAccept(){ 
+    public void notSingletonNotInitialAccept(){
     	State init = new State();
     	State fin = new State();
     	init.setAccept(false);
@@ -126,7 +125,7 @@ public class IsEmptyTests {
     
  // a.isSingleton()==False,  !a.initial.accept==True, a.initial.transitions.isEmpty()==True
     @Test
-    public void notSingletonNotInitialAcceptIsEmptyTrans(){ 
+    public void notSingletonNotInitialAcceptIsEmptyTrans(){
     	State init = new State();
     	init.setAccept(false);
     	Automaton automatonA = new Automaton();
