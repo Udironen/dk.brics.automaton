@@ -29,8 +29,8 @@ public class MinusTests {
     public void minusRandomTest(){
         Validator validator = Validator.getValidator();
         for (int i = 0; i < 1000; ++i){
-            RandomRegex firstRegex = RandomRegex.getRandRegEx();
-            RandomRegex secondRegex = RandomRegex.getRandRegEx();
+            RandomRegex firstRegex = RandomRegex.getRandRegex();
+            RandomRegex secondRegex = RandomRegex.getRandRegex();
             checkMinusRandomTest(validator, firstRegex, secondRegex);
         }
         Assert.assertTrue(validator.getMessage(), validator.isValid());
