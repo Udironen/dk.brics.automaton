@@ -1,16 +1,12 @@
 package test.java.bricsTests.regexOpps;
 
 import dk.brics.automaton.Automaton;
-import dk.brics.automaton.BasicAutomata;
 import dk.brics.automaton.BasicOperations;
 import dk.brics.automaton.RegExp;
-import test.java.bricsTests.RandomRegex;
-import test.java.bricsTests.Validator;
-
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Test;
+import test.java.bricsTests.RandomRegex;
+import test.java.bricsTests.Validator;
 
 public class MinusTests {
 

@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class RandomRegex {
     private String regex;
-    private final List<String> strings;
+    private List<String> strings;
 
     private RandomRegex(String regex, List<String> strings){
         this.regex = regex;
@@ -59,7 +59,9 @@ public class RandomRegex {
 
     public static RandomRegex getRandRegexSingleton(){
         String randString = getRandString();
-        return new RandomRegex(randString, Collections.singletonList(randString));
+        List<String> strings = new ArrayList<>();
+        strings.add(randString);
+        return new RandomRegex(randString, strings);
     }
 
     public static RandomRegex getRandRegex(){
@@ -159,4 +161,21 @@ public class RandomRegex {
         randomRegex.strings.add("");
         return randomRegex;
     }
+
+    public static RandomRegex getRandSingletonWithEmptyString(){
+        RandomRegex randomRegex = getRandRegexSingleton();
+        randomRegex.regex = randomRegex.regex.concat("|()");
+        randomRegex.strings.add("");
+        return randomRegex;
+    }
+
+    public static List<String> getRandomStrings(int num){
+        List<String> strings = new ArrayList<>();
+        for (int i = 0 ; i < num ; ++i) {
+            strings.add(getRandString());
+        }
+        return strings;
+    }
+
+
 }
