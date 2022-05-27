@@ -103,6 +103,13 @@ public class MinusTests {
         Assert.assertTrue("minus is not empty", minus.isEmpty());
     }
     @Test
+    public void a1NotEmptya2IsEmpty(){
+    	Automaton a1 = Automaton.makeString("talya");
+    	Automaton a2 = Automaton.makeEmpty();
+        Automaton minus = BasicOperations.minus(a1, a2);
+        Assert.assertTrue("minus is not eq to a1", minus.equals(a1));
+    }
+    @Test
     public void a1IsSingletona2SingletonTest(){
     	Automaton a1 = Automaton.makeString("talya");
     	Automaton a2 = Automaton.makeString("talya");
