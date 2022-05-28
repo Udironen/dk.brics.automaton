@@ -1,4 +1,4 @@
-package test.java.bricsTests.regexOpps;
+package test.java.bricsTests.basicOpps;
 
 import dk.brics.automaton.*;
 import org.junit.Assert;

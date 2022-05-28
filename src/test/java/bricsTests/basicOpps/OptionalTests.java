@@ -1,4 +1,4 @@
-package test.java.bricsTests.regexOpps;
+package test.java.bricsTests.basicOpps;
 
 import dk.brics.automaton.Automaton;
 import dk.brics.automaton.BasicOperations;

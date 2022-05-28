@@ -4,6 +4,7 @@ import org.junit.FixMethodOrder;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.junit.runners.Suite;
+import test.java.bricsTests.basicOpps.*;
 import test.java.bricsTests.regexOpps.*;
 
 @RunWith(Suite.class)
