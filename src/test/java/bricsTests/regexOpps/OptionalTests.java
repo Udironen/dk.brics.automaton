@@ -1,7 +1,6 @@
 package test.java.bricsTests.regexOpps;
 
 import dk.brics.automaton.Automaton;
-import dk.brics.automaton.RegExp;
 import org.junit.Assert;
 import org.junit.Test;
 

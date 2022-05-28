@@ -110,7 +110,7 @@ public class MinusTests {
     	Automaton a1 = Automaton.makeString("talya");
     	Automaton a2 = (new RegExp("abc*")).toAutomaton();
         Automaton minus = BasicOperations.minus(a1, a2);
-        Assert.assertTrue("minus failed", minus.equals(BasicOperations.intersection(a1, a2.complement())));
+        Assert.assertEquals("minus failed", minus, BasicOperations.intersection(a1, a2.complement()));
     }
     
     

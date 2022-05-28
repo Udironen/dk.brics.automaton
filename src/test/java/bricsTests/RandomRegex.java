@@ -151,6 +151,10 @@ public class RandomRegex {
         return new RandomRegex("#", new ArrayList<>());
     }
 
+    public static RandomRegex getTotalRegex(){
+        return new RandomRegex("@", new ArrayList<>());
+    }
+
     public static RandomRegex getEmptyStringRegex(){
         return new RandomRegex("()", Collections.singletonList(""));
     }
