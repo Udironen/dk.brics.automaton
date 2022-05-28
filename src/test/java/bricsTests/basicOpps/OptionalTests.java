@@ -9,8 +9,6 @@ import test.java.bricsTests.RandomRegex;
 import test.java.bricsTests.Validator;
 import org.junit.Assert;
 import org.junit.Test;
-import test.java.bricsTests.RandomRegex;
-import test.java.bricsTests.Validator;
 
 public class OptionalTests {
 
