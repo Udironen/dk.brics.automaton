@@ -2,6 +2,7 @@ package test.java.bricsTests.regexOpps;
 
 import dk.brics.automaton.Automaton;
 import dk.brics.automaton.BasicOperations;
+import dk.brics.automaton.BasicOperationsForTests;
 import dk.brics.automaton.RegExp;
 import org.junit.Assert;
 import org.junit.Test;
@@ -49,7 +50,7 @@ public class IntersectionTests {
             RandomRegex reg2 = RandomRegex.getEmptyRegex();
             Automaton automatonA = new RegExp(reg1.getRegex(), RegExp.ALL).toAutomaton();
             Automaton automatonB = new RegExp(reg2.getRegex(), RegExp.ALL).toAutomaton();
-            Automaton intersectionAB = BasicOperations.intersection(automatonA, automatonB);
+            Automaton intersectionAB = BasicOperationsForTests.intersection(automatonA, automatonB);
             validator.addCheck(intersectionAB.isEmpty(), "intersectionAB.isEmpty() return false");
             validator.addCheck(intersectionAB.getAcceptStates().isEmpty() , "accept states are not empty");
             Assert.assertTrue(validator.getMessage(), validator.isValid());        }
@@ -67,7 +68,7 @@ public class IntersectionTests {
             RandomRegex reg2 = RandomRegex.getRandRegex();
             Automaton automatonA = new RegExp(reg1.getRegex(), RegExp.ALL).toAutomaton();
             Automaton automatonB = new RegExp(reg2.getRegex(), RegExp.ALL).toAutomaton();
-            Automaton intersectionAB = BasicOperations.intersection(automatonA, automatonB);
+            Automaton intersectionAB = BasicOperationsForTests.intersection(automatonA, automatonB);
             validator.addCheck(intersectionAB.isEmpty(), "intersectionAB.isEmpty() return false");
             validator.addCheck(intersectionAB.getAcceptStates().isEmpty() , "accept states are not empty");
             Assert.assertTrue(validator.getMessage(), validator.isValid());        }
@@ -83,7 +84,7 @@ public class IntersectionTests {
         Validator validator = Validator.getValidator();
         Automaton automatonA = new RegExp("#", RegExp.ALL).toAutomaton();
         Automaton automatonB = new RegExp("#", RegExp.ALL).toAutomaton();
-        Automaton intersectionAB = BasicOperations.intersection(automatonA, automatonB);
+        Automaton intersectionAB = BasicOperationsForTests.intersection(automatonA, automatonB);
         validator.addCheck(intersectionAB.isEmpty(), "intersectionAB.isEmpty() return false");
         validator.addCheck(intersectionAB.getAcceptStates().isEmpty() , "accept states are not empty");
         Assert.assertTrue(validator.getMessage(), validator.isValid());
@@ -109,7 +110,7 @@ public class IntersectionTests {
         } while (isRegexInOtherRegex(firstRegex, secondRegex));
         Automaton automatonA = new RegExp(firstRegex.getRegex(), RegExp.ALL).toAutomaton();
         Automaton automatonB = new RegExp(secondRegex.getRegex(), RegExp.ALL).toAutomaton();
-        Automaton intersectionAB = BasicOperations.intersection(automatonA, automatonB);
+        Automaton intersectionAB = BasicOperationsForTests.intersection(automatonA, automatonB);
         validator.addCheck(intersectionAB.isEmpty(),
                 "intersectionAB is not empty.\n" +
                 "first regex: " + firstRegex.getRegex() + "\n" +
@@ -173,7 +174,7 @@ public class IntersectionTests {
         RandomRegex firstRegex = RandomRegex.getRandRegexSingleton();
         Automaton automatonA = new RegExp(firstRegex.getRegex(), RegExp.ALL).toAutomaton();
         Automaton automatonB = new RegExp(firstRegex.getRegex(), RegExp.ALL).toAutomaton();
-        Automaton intersectionAB = BasicOperations.intersection(automatonA, automatonB);
+        Automaton intersectionAB = BasicOperationsForTests.intersection(automatonA, automatonB);
         validator.addCheck(intersectionAB.equals(automatonA), "intersectionAB is not equal to automatonA");
         Assert.assertTrue(validator.getMessage(), validator.isValid());
     }
@@ -207,7 +208,7 @@ public class IntersectionTests {
         Validator validator = Validator.getValidator();
         Automaton automatonA = new RegExp("()", RegExp.ALL).toAutomaton();
         Automaton automatonB = new RegExp("()", RegExp.ALL).toAutomaton();
-        Automaton intersectionAB = BasicOperations.intersection(automatonA, automatonB);
+        Automaton intersectionAB = BasicOperationsForTests.intersection(automatonA, automatonB);
         validator.addCheck(intersectionAB.equals(automatonA), "intersectionAB is not equal to automatonA");
         validator.addCheck(intersectionAB.run(""), "intersectionAB does not accept the empty string");
         Assert.assertTrue(validator.getMessage(), validator.isValid());
@@ -297,7 +298,7 @@ public class IntersectionTests {
         Automaton automatonA = union1.toAutomaton();
         Automaton automatonB = union2.toAutomaton();
         Automaton automatonShared = new RegExp(sharedRegex.getRegex(), RegExp.ALL).toAutomaton();
-        Automaton intersectionAB = BasicOperations.intersection(automatonA, automatonB);
+        Automaton intersectionAB = BasicOperationsForTests.intersection(automatonA, automatonB);
         validator.addCheck(intersectionAB.equals(automatonShared),
                 "intersection of automatonA:\n" +
                         union1 + "\n" +
@@ -318,7 +319,7 @@ public class IntersectionTests {
         RegExp union2 = unionRegexes(reg2.getRegex(), sharedRegex.getRegex());
         Automaton automatonA = union1.toAutomaton();
         Automaton automatonB = union2.toAutomaton();
-        Automaton intersectionAB = BasicOperations.intersection(automatonA, automatonB);
+        Automaton intersectionAB = BasicOperationsForTests.intersection(automatonA, automatonB);
         for (String string1 : reg1.getStrings()) {
             System.out.println("regex: " + union1 + " intersection with " + union2 + "\n" +
                     "random string from first regex domain: " + string1 + "\n");
@@ -342,7 +343,7 @@ public class IntersectionTests {
         RegExp union2 = unionRegexes(reg2.getRegex(), sharedRegex.getRegex());
         Automaton automatonA = union1.toAutomaton();
         Automaton automatonB = union2.toAutomaton();
-        Automaton intersectionAB = BasicOperations.intersection(automatonA, automatonB);
+        Automaton intersectionAB = BasicOperationsForTests.intersection(automatonA, automatonB);
         if (first) validator.addCheck(automatonA.equals(intersectionAB),
                 union1.toString() + " is not equal to " + union1.toString() + "intersect with " + union2.toString());
         else validator.addCheck(automatonB.equals(intersectionAB),

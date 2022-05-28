@@ -1,7 +1,7 @@
 package test.java.bricsTests.basicOpps;
 
 import dk.brics.automaton.Automaton;
-import dk.brics.automaton.BasicOperations;
+import dk.brics.automaton.BasicOperationsForTests;
 import dk.brics.automaton.RegExp;
 import dk.brics.automaton.State;
 import dk.brics.automaton.Transition;
@@ -20,14 +20,14 @@ public class OptionalTests {
     public void emptyCaseTest(){
         Automaton a = Automaton.makeEmpty();
         Automaton b = Automaton.makeEmptyString();
-        Automaton opt = BasicOperations.optional(a);
+        Automaton opt = BasicOperationsForTests.optional(a);
         Assert.assertEquals(opt, b);
     }
 
 	@Test
     public void anyCaseTest(){
         Automaton a = Automaton.makeAnyString();
-        Automaton opt = BasicOperations.optional(a);
+        Automaton opt = BasicOperationsForTests.optional(a);
         Assert.assertEquals(opt, a);
     }
 
@@ -37,7 +37,7 @@ public class OptionalTests {
         for (int i = 0; i < NUM_OF_RANDOMS; ++i){
         	RandomRegex reg1 = RandomRegex.getRandRegex();
         	Automaton a = new RegExp(reg1.getRegex(), RegExp.ALL).toAutomaton();
-        	Automaton opt = BasicOperations.optional(a);
+        	Automaton opt = BasicOperationsForTests.optional(a);
         	boolean bool = (!(a.getShortestExample(true).equals("")))&&((opt.getShortestExample(true).equals("")));
             validator.addCheck(bool , "failed on regex: " + reg1.getRegex());
             bool = (opt.minus(Automaton.makeEmptyString()).equals(a));
@@ -58,8 +58,8 @@ public class OptionalTests {
     	second.addTransition(new Transition('1', init));
     	Automaton automatonA = new Automaton();
     	automatonA.setInitialState(init);
-		automatonA =  BasicOperations.optional(automatonA);
-		Assert.assertFalse("it accepts a string i used to not accept", BasicOperations.run(automatonA, "01"));
+		automatonA =  BasicOperationsForTests.optional(automatonA);
+		Assert.assertFalse("it accepts a string i used to not accept", BasicOperationsForTests.run(automatonA, "01"));
 		
 	}
 }

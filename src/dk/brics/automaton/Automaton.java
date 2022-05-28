@@ -826,10 +826,10 @@ public class Automaton implements Serializable, Cloneable {
 	}
 	
 	/** 
-	 * See {@link BasicOperations#concatenate(Automaton, Automaton)}.
+	 * See {@link BasicOperationsForTests#concatenate(Automaton, Automaton)}.
 	 */
 	public Automaton concatenate(Automaton a) {
-		return BasicOperations.concatenate(this, a);
+		return BasicOperationsForTests.concatenate(this, a);
 	}
 	
 	/**
@@ -840,17 +840,17 @@ public class Automaton implements Serializable, Cloneable {
 	}
 
 	/**
-	 * See {@link BasicOperations#optional(Automaton)}.
+	 * See {@link BasicOperationsForTests#optional(Automaton)}.
 	 */
 	public Automaton optional() {
-		return BasicOperations.optional(this);
+		return BasicOperationsForTests.optional(this);
 	}
 	
 	/**
-	 * See {@link BasicOperations#repeat(Automaton)}.
+	 * See {@link BasicOperationsForTests#repeat(Automaton)}.
 	 */
 	public Automaton repeat() {
-		return BasicOperations.repeat(this);
+		return BasicOperationsForTests.repeat(this);
 	}
 
 	/**
@@ -868,38 +868,38 @@ public class Automaton implements Serializable, Cloneable {
 	}
 
 	/**
-	 * See {@link BasicOperations#complement(Automaton)}.
+	 * See {@link BasicOperationsForTests#complement(Automaton)}.
 	 */
 	public Automaton complement() {
-		return BasicOperations.complement(this);
+		return BasicOperationsForTests.complement(this);
 	}
 
 	/**
-	 * See {@link BasicOperations#minus(Automaton, Automaton)}.
+	 * See {@link BasicOperationsForTests#minus(Automaton, Automaton)}.
 	 */
 	public Automaton minus(Automaton a) {
-		return BasicOperations.minus(this, a);
+		return BasicOperationsForTests.minus(this, a);
 	}
 
 	/**
-	 * See {@link BasicOperations#intersection(Automaton, Automaton)}.
+	 * See {@link BasicOperationsForTests#intersection(Automaton, Automaton)}.
 	 */
 	public Automaton intersection(Automaton a) {
-		return BasicOperations.intersection(this, a);
+		return BasicOperationsForTests.intersection(this, a);
 	}
 	
 	/**
-	 * See {@link BasicOperations#subsetOf(Automaton, Automaton)}.
+	 * See {@link BasicOperationsForTests#subsetOf(Automaton, Automaton)}.
 	 */
 	public boolean subsetOf(Automaton a) {
-		return BasicOperations.subsetOf(this, a);
+		return BasicOperationsForTests.subsetOf(this, a);
 	}
 	
 	/**
-	 * See {@link BasicOperations#union(Automaton, Automaton)}.
+	 * See {@link BasicOperationsForTests#union(Automaton, Automaton)}.
 	 */
 	public Automaton union(Automaton a) {
-		return BasicOperations.union(this, a);
+		return BasicOperationsForTests.union(this, a);
 	}
 	
 	/**
@@ -931,10 +931,10 @@ public class Automaton implements Serializable, Cloneable {
 	}
 
 	/**
-	 * See {@link BasicOperations#isEmpty(Automaton)}.
+	 * See {@link BasicOperationsForTests#isEmpty(Automaton)}.
 	 */
 	public boolean isEmpty() {
-		return BasicOperations.isEmpty(this);
+		return BasicOperationsForTests.isEmpty(this);
 	}
 	
 	/**
@@ -952,10 +952,10 @@ public class Automaton implements Serializable, Cloneable {
 	}
 	
 	/**
-	 * See {@link BasicOperations#run(Automaton, String)}.
+	 * See {@link BasicOperationsForTests#run(Automaton, String)}.
 	 */
 	public boolean run(String s) {
-		return BasicOperations.run(this, s);
+		return BasicOperationsForTests.run(this, s);
 	}
 	
 	/**

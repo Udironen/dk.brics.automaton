@@ -2,6 +2,7 @@ package test.java.bricsTests.regexOpps;
 
 import dk.brics.automaton.Automaton;
 import dk.brics.automaton.BasicOperations;
+import dk.brics.automaton.BasicOperationsForTests;
 import dk.brics.automaton.RegExp;
 import org.junit.Assert;
 import org.junit.Test;
@@ -384,7 +385,7 @@ public class ConcatinationTests {
     private void checkConcat(Validator validator, RandomRegex reg1, RandomRegex reg2){
         Automaton automatonA = new RegExp(reg1.getRegex(), RegExp.ALL).toAutomaton();
         Automaton automatonB = new RegExp(reg2.getRegex(), RegExp.ALL).toAutomaton();
-        Automaton concatAB = BasicOperations.concatenate(automatonA, automatonB);
+        Automaton concatAB = BasicOperationsForTests.concatenate(automatonA, automatonB);
         List<String> firstStrings = reg1.getStrings();
         List<String> secondStrings = reg2.getStrings();
         for (String first : firstStrings) {
@@ -404,7 +405,7 @@ public class ConcatinationTests {
         Automaton automatonA = new RegExp(reg1.getRegex(), RegExp.ALL).toAutomaton();
         Automaton automatonB = new RegExp(reg2.getRegex(), RegExp.ALL).toAutomaton();
         Automaton automatonMiddle = new RegExp("*", RegExp.ALL).toAutomaton();
-        Automaton concatAB = BasicOperations.concatenate(automatonA, automatonMiddle).concatenate(automatonB);
+        Automaton concatAB = BasicOperationsForTests.concatenate(automatonA, automatonMiddle).concatenate(automatonB);
         for (String first : reg1.getStrings()) {
             first = getRandStringNotInAutomaton(first, automatonB, true);
             System.out.println("regex: " + reg1.getRegex() + " concat * concat" + reg2.getRegex() + "\n" +
@@ -420,7 +421,7 @@ public class ConcatinationTests {
         Automaton automatonA = new RegExp(reg1.getRegex(), RegExp.ALL).toAutomaton();
         Automaton automatonB = new RegExp(reg2.getRegex(), RegExp.ALL).toAutomaton();
         Automaton automatonMiddle = new RegExp("*", RegExp.ALL).toAutomaton();
-        Automaton concatAB = BasicOperations.concatenate(automatonA, automatonMiddle).concatenate(automatonB);
+        Automaton concatAB = BasicOperationsForTests.concatenate(automatonA, automatonMiddle).concatenate(automatonB);
         for (String second : reg2.getStrings()) {
             second = getRandStringNotInAutomaton(second, automatonA, false);
             System.out.println("regex: " + reg1.getRegex() + " concat * concat" + reg2.getRegex() + "\n" +

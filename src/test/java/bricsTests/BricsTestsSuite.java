@@ -25,7 +25,7 @@ import test.java.bricsTests.regexOpps.*;
 
 
 public class BricsTestsSuite {
-    public final static int NUM_OF_RANDOMS = 1;
+    public final static int NUM_OF_RANDOMS = 1000;
 
 
 }

@@ -49,7 +49,7 @@ public class RunTests {
     }
 	
 	private void checkStringInAutomate(Automaton automatonA, Validator validator, String s){
-        validator.addCheck(BasicOperations.run(automatonA, s) ,
+        validator.addCheck(BasicOperationsForTests.run(automatonA, s) ,
                 "the string " + s + "didn't get accepted but is should");
     }
 	
@@ -65,7 +65,7 @@ public class RunTests {
     }
 	
 	private void checkStringNotInAutomate(Automaton automatonA, Validator validator, String s){
-        validator.addCheck(!BasicOperations.run(automatonA, s) ,
+        validator.addCheck(!BasicOperationsForTests.run(automatonA, s) ,
                 "the string " + s + "got accepted but is shouldnt");
     }
     
@@ -86,8 +86,8 @@ public class RunTests {
 	@Test
 	public void SingletonTest(){
 		Automaton automatonA = Automaton.makeString("talya");
-		Assert.assertTrue(BasicOperations.run(automatonA, "talya"));
-		Assert.assertFalse(BasicOperations.run(automatonA, "ohad"));	
+		Assert.assertTrue(BasicOperationsForTests.run(automatonA, "talya"));
+		Assert.assertFalse(BasicOperationsForTests.run(automatonA, "ohad"));	
     }
 	
 	@Test
@@ -102,8 +102,8 @@ public class RunTests {
     	if (automatonA.getSingleton() != null ||  !automatonA.isDeterministic()) {
     		Assert.fail("bad test");
     	}
-    	Assert.assertTrue(BasicOperations.run(automatonA, "t"));
-		Assert.assertFalse(BasicOperations.run(automatonA, "o"));	
+    	Assert.assertTrue(BasicOperationsForTests.run(automatonA, "t"));
+		Assert.assertFalse(BasicOperationsForTests.run(automatonA, "o"));	
     }
 	
 	@Test
@@ -121,9 +121,9 @@ public class RunTests {
     	if (automatonA.getSingleton() != null ||  automatonA.isDeterministic()) {
     		Assert.fail("bad test");
     	}
-    	Assert.assertTrue(BasicOperations.run(automatonA, "t"));
-    	Assert.assertTrue(BasicOperations.run(automatonA, ""));
-		Assert.assertFalse(BasicOperations.run(automatonA, "o"));	
+    	Assert.assertTrue(BasicOperationsForTests.run(automatonA, "t"));
+    	Assert.assertTrue(BasicOperationsForTests.run(automatonA, ""));
+		Assert.assertFalse(BasicOperationsForTests.run(automatonA, "o"));	
     }
 
 }

@@ -1,11 +1,6 @@
 package test.java.bricsTests.basicOpps;
 
-import dk.brics.automaton.Automaton;
-import dk.brics.automaton.BasicAutomata;
-import dk.brics.automaton.BasicOperations;
-import dk.brics.automaton.RegExp;
-import dk.brics.automaton.State;
-import dk.brics.automaton.Transition;
+import dk.brics.automaton.*;
 import test.java.bricsTests.RandomRegex;
 import test.java.bricsTests.Validator;
 
@@ -90,15 +85,21 @@ public class IsEmptyTests {
     }
     
     // WHITE BOX TESTS
-//    public static boolean isEmpty(Automaton a) {
-//		if (a.isSingleton())
-//			return false;
-//		return !a.initial.accept && a.initial.transitions.isEmpty();
-//	}
+
+
+
+    /***
+     * this tests validate all conditions in the source code:
+     * public static boolean isEmpty(Automaton a) {
+     * 		if (a.isSingleton())
+     * 			return false;
+     * 		return !a.initial.accept && a.initial.transitions.isEmpty();
+     *        }
+     */
     @Test
     public void makeSingletonTest(){ // a.isSingleton()==True 
     	Automaton automatonA = BasicAutomata.makeString("Talya");
-    	Assert.assertFalse("condition 1 in isEmpty failed", BasicOperations.isEmpty(automatonA));
+    	Assert.assertFalse("condition 1 in isEmpty failed", BasicOperationsForTests.isEmpty(automatonA));
     }
     
     @Test
@@ -108,7 +109,7 @@ public class IsEmptyTests {
     	init.setAccept(true);
     	Automaton automatonA = new Automaton();
     	automatonA.setInitialState(init);
-    	Assert.assertFalse("condition 2 in isEmpty failed", BasicOperations.isEmpty(automatonA));
+    	Assert.assertFalse("condition 2 in isEmpty failed", BasicOperationsForTests.isEmpty(automatonA));
     }
     
     // a.isSingleton()==False,  !a.initial.accept==True, a.initial.transitions.isEmpty()==False
@@ -121,7 +122,7 @@ public class IsEmptyTests {
     	init.addTransition(new Transition('t', fin));
     	Automaton automatonA = new Automaton();
     	automatonA.setInitialState(init);
-    	Assert.assertFalse("condition 3 in isEmpty failed", BasicOperations.isEmpty(automatonA));
+    	Assert.assertFalse("condition 3 in isEmpty failed", BasicOperationsForTests.isEmpty(automatonA));
     }
 
     
@@ -132,7 +133,7 @@ public class IsEmptyTests {
     	init.setAccept(false);
     	Automaton automatonA = new Automaton();
     	automatonA.setInitialState(init);
-    	Assert.assertTrue("condition 2+3 in isEmpty failed", BasicOperations.isEmpty(automatonA));
+    	Assert.assertTrue("condition 2+3 in isEmpty failed", BasicOperationsForTests.isEmpty(automatonA));
     }
     
     

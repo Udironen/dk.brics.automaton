@@ -2,6 +2,7 @@ package test.java.bricsTests.regexOpps;
 
 import dk.brics.automaton.Automaton;
 import dk.brics.automaton.BasicOperations;
+import dk.brics.automaton.BasicOperationsForTests;
 import dk.brics.automaton.RegExp;
 import org.junit.Assert;
 import org.junit.Test;
@@ -73,7 +74,7 @@ public class UnionTests {
     }
 
     /***
-     * in this test the second regex in the union is the empty regex
+     * in this test the second regex in the union is the empty regex.
      * this test check if strings that belong to the complement of the first regex domain of the union is NOT part of the new union domain
      */
     @Test
@@ -103,7 +104,7 @@ public class UnionTests {
     }
 
     /***
-     * in this test the first regex in the union is the empty regex
+     * in this test the first regex in the union is the empty regex.
      * this test check if strings that belong to the complement of the second regex domain of the union is NOT part of the new union domain
      */
     @Test
@@ -141,7 +142,7 @@ public class UnionTests {
         Validator validator = Validator.getValidator();
         Automaton automatonA = new RegExp("#", RegExp.ALL).toAutomaton();
         Automaton automatonB = new RegExp("#", RegExp.ALL).toAutomaton();
-        Automaton unionAB = BasicOperations.union(automatonA, automatonB);
+        Automaton unionAB = BasicOperationsForTests.union(automatonA, automatonB);
         validator.addCheck(unionAB.isEmpty(), "unionAB.isEmpty() return false");
         validator.addCheck(unionAB.getAcceptStates().isEmpty() , "accept states are not empty");
         Assert.assertTrue(validator.getMessage(), validator.isValid());
@@ -357,7 +358,7 @@ public class UnionTests {
         Validator validator = Validator.getValidator();
         Automaton automatonA = new RegExp("()", RegExp.ALL).toAutomaton();
         Automaton automatonB = new RegExp("()", RegExp.ALL).toAutomaton();
-        Automaton unionAB = BasicOperations.union(automatonA, automatonB);
+        Automaton unionAB = BasicOperationsForTests.union(automatonA, automatonB);
         validator.addCheck(unionAB.run(""), "unionAB.run(\"\") return false");
         Assert.assertTrue(validator.getMessage(), validator.isValid());
     }
@@ -430,7 +431,7 @@ public class UnionTests {
     private void checkFirstRegexOfUnion(Validator validator, RandomRegex reg1, RandomRegex reg2, boolean checkFirst){
         Automaton automatonA = new RegExp(reg1.getRegex(), RegExp.ALL).toAutomaton();
         Automaton automatonB = new RegExp(reg2.getRegex(), RegExp.ALL).toAutomaton();
-        Automaton unionAB = BasicOperations.union(automatonA, automatonB);
+        Automaton unionAB = BasicOperationsForTests.union(automatonA, automatonB);
         List<String> strings = checkFirst ? reg1.getStrings() : reg2.getStrings();
         for (String aOrBString : strings) {
             System.out.println("regex: " + reg1.getRegex() + " union " + reg2.getRegex() + "\n" +
@@ -446,7 +447,7 @@ public class UnionTests {
         Automaton automatonB = new RegExp(reg2.getRegex(), RegExp.ALL).toAutomaton();
         RandomRegex reg3 = RandomRegex.getRandRegex();
         List<String> strings = reg3.getStrings();
-        Automaton unionAB = BasicOperations.union(automatonA, automatonB);
+        Automaton unionAB = BasicOperationsForTests.union(automatonA, automatonB);
         for (String reg3String : strings) {
             if (automatonA.run(reg3String) || automatonB.run(reg3String)) continue;
             System.out.println("regex: " + reg1.getRegex() + " union " + reg2.getRegex() + "\n" +
