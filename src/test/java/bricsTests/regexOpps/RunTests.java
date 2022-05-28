@@ -14,6 +14,28 @@ public class RunTests {
 
 	// BLACK BOX TESTS
 	@Test
+	public void acceptRegexRandomTest(){
+        Validator validator = Validator.getValidator();
+        for (int i = 0; i < 1000; ++i){
+        	RandomRegex reg1 = RandomRegex.getRandRegex();
+        	Automaton a1 = new RegExp(reg1.getRegex(), RegExp.ALL).toAutomaton();
+            checkStringInAutomate(a1, validator, a1.getShortestExample(true));
+        }
+        Assert.assertTrue(validator.getMessage(), validator.isValid());
+    }
+	
+	@Test
+	public void rejectRegexRandomTest(){
+        Validator validator = Validator.getValidator();
+        for (int i = 0; i < 1000; ++i){
+        	RandomRegex reg1 = RandomRegex.getRandRegex();
+        	Automaton a1 = new RegExp(reg1.getRegex(), RegExp.ALL).toAutomaton();
+            checkStringNotInAutomate(a1, validator, a1.getShortestExample(false));
+        }
+        Assert.assertTrue(validator.getMessage(), validator.isValid());
+    }
+	
+	
     public void acceeptAllRandomTest(){
         Validator validator = Validator.getValidator();
         Automaton automatonA = Automaton.makeAnyString();
@@ -26,7 +48,7 @@ public class RunTests {
 	
 	private void checkStringInAutomate(Automaton automatonA, Validator validator, String s){
         validator.addCheck(BasicOperations.run(automatonA, s) ,
-                "the string " + s + "didn't get accepted");
+                "the string " + s + "didn't get accepted but is should");
     }
 	
 	@Test
@@ -42,7 +64,7 @@ public class RunTests {
 	
 	private void checkStringNotInAutomate(Automaton automatonA, Validator validator, String s){
         validator.addCheck(!BasicOperations.run(automatonA, s) ,
-                "the string " + s + "didn't get accepted");
+                "the string " + s + "got accepted but is shouldnt");
     }
     
 	@Test
