@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class RandomRegex {
     private String regex;
-    private List<String> strings;
+    private final List<String> strings;
 
     private RandomRegex(String regex, List<String> strings){
         this.regex = regex;

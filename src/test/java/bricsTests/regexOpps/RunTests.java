@@ -36,7 +36,7 @@ public class RunTests {
     }
 	
 	
-    public void acceeptAllRandomTest(){
+    public void  acceeptAllRandomTest(){
         Validator validator = Validator.getValidator();
         Automaton automatonA = Automaton.makeAnyString();
         for (int i = 0; i < 1000; ++i){
