@@ -111,19 +111,19 @@ public class SubsetOfTests {
     public void SpecificFalseCaseTest1(){
 		Automaton a1 = new RegExp("01(23)*").toAutomaton();
     	Automaton a2 = new RegExp("(01)*(23)+").toAutomaton();
-        Assert.assertTrue("\"01(23)*\" shouldn't be subset of \"(012)*(32)*3+\"", BasicOperations.subsetOf(a1, a2));
+        Assert.assertFalse("\"01(23)*\" shouldn't be subset of \"(01)*(23)+\"", BasicOperations.subsetOf(a1, a2));
     }
 	@Test
     public void SpecificFalseCaseTest2(){
 		Automaton a1 = new RegExp("(012)*").toAutomaton();
     	Automaton a2 = new RegExp("(012)+").toAutomaton();
-        Assert.assertTrue("\"(012)*\" shouldn't be subset of \"(012)+\"", BasicOperations.subsetOf(a1, a2));
+        Assert.assertFalse("\"(012)*\" shouldn't be subset of \"(012)+\"", BasicOperations.subsetOf(a1, a2));
     }
 	@Test
     public void SpecificFalseCaseTest3(){
 		Automaton a1 = new RegExp("(012)*(34)*").toAutomaton();
     	Automaton a2 = new RegExp("(01)*(234)*").toAutomaton();
-        Assert.assertTrue("\"(012)*(34)*\" shouldn't be subset of \"(01)*(234)*\"", BasicOperations.subsetOf(a1, a2));
+        Assert.assertFalse("\"(012)*(34)*\" shouldn't be subset of \"(01)*(234)*\"", BasicOperations.subsetOf(a1, a2));
     }
 	
 	// WHITE BOX TESTS
@@ -144,7 +144,47 @@ public class SubsetOfTests {
 	
 	// a1.isSingleton()
 	@Test
-    public void a1isSingletonTest(){
-
+    public void a1anda2isSingletonTest(){
+		Validator validator = Validator.getValidator();
+		for (String str1 : RandomRegex.getRandomStrings(10)) {
+			for (String str2 : RandomRegex.getRandomStrings(10)) {
+				Automaton a1 = Automaton.makeString(str1);
+				Automaton a2 = Automaton.makeString(str2);
+				if (str1.equals(str2)){
+					validator.addCheck(BasicOperations.subsetOf(a1, a2) ,
+		                    str1+" isn't a subset of itself");
+				}
+				else{
+					validator.addCheck(BasicOperations.subsetOf(a1, a2) ,
+		                    str1+" shouldn't be a subset of "+str2);
+				}
+		    }
+		}
     }
+	
+	public void a1isSingletonTest(){
+		Validator validator = Validator.getValidator();
+		for (int i = 0; i < 100; ++i) {
+			RandomRegex reg1 = RandomRegex.getRandRegex();
+        	Automaton a2 = new RegExp(reg1.getRegex(), RegExp.ALL).toAutomaton();
+        	if (a2.getSingleton()==null) {
+        		String str1 = a2.getShortestExample(false);
+        		if (str1!=null) {
+        			Automaton a1 = Automaton.makeString(str1);
+        			validator.addCheck(!BasicOperations.subsetOf(a1, a2) ,
+    	                    str1+" shouldn't be a subset of "+reg1.getRegex());	
+        		}
+        		str1 = a2.getShortestExample(true);
+        		if (str1!=null) {
+        			Automaton a1 = Automaton.makeString(str1);
+        			validator.addCheck(!BasicOperations.subsetOf(a1, a2) ,
+    	                    str1+" should be a subset of "+reg1.getRegex());	
+        		}
+        	}
+	    }
+		
+    }
+	
+	//other white tests
+	
 }
