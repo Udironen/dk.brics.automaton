@@ -1,4 +1,4 @@
-package test.java.bricsTests.regexOpps;
+package test.java.bricsTests.basicOpps;
 
 import dk.brics.automaton.Automaton;
 import dk.brics.automaton.BasicOperations;
@@ -94,8 +94,7 @@ public class MinusTests {
     @Test
     public void a1a2equal(){
     	Automaton a1 = Automaton.makeString("talya");
-    	Automaton a2 = a1;
-        Automaton minus = BasicOperations.minus(a1, a2);
+        Automaton minus = BasicOperations.minus(a1, a1);
         Assert.assertTrue("minus is not empty", minus.isEmpty());
     }
     @Test
@@ -103,7 +102,7 @@ public class MinusTests {
     	Automaton a1 = Automaton.makeString("talya");
     	Automaton a2 = Automaton.makeEmpty();
         Automaton minus = BasicOperations.minus(a1, a2);
-        Assert.assertTrue("minus is not eq to a1", minus.equals(a1));
+        Assert.assertEquals("minus is not eq to a1", minus, a1);
     }
     @Test
     public void a1IsSingletona2SingletonTest(){
@@ -117,7 +116,7 @@ public class MinusTests {
     	Automaton a1 = Automaton.makeString("talya");
     	Automaton a2 = (new RegExp("abc*")).toAutomaton();
         Automaton minus = BasicOperations.minus(a1, a2);
-        Assert.assertTrue("minus failed", minus.equals(BasicOperations.intersection(a1, a2.complement())));
+        Assert.assertEquals("minus failed", minus, BasicOperations.intersection(a1, a2.complement()));
     }
     
     

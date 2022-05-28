@@ -1,4 +1,4 @@
-package test.java.bricsTests.regexOpps;
+package test.java.bricsTests.basicOpps;
 
 import dk.brics.automaton.Automaton;
 import dk.brics.automaton.BasicOperations;
@@ -7,9 +7,10 @@ import dk.brics.automaton.State;
 import dk.brics.automaton.Transition;
 import test.java.bricsTests.RandomRegex;
 import test.java.bricsTests.Validator;
-
 import org.junit.Assert;
 import org.junit.Test;
+import test.java.bricsTests.RandomRegex;
+import test.java.bricsTests.Validator;
 
 public class OptionalTests {
 
@@ -20,16 +21,16 @@ public class OptionalTests {
         Automaton a = Automaton.makeEmpty();
         Automaton b = Automaton.makeEmptyString();
         Automaton opt = BasicOperations.optional(a);
-        Assert.assertTrue(opt.equals(b)); 
+        Assert.assertEquals(opt, b);
     }
-	
+
 	@Test
     public void anyCaseTest(){
         Automaton a = Automaton.makeAnyString();
         Automaton opt = BasicOperations.optional(a);
-        Assert.assertTrue(opt.equals(a)); 
+        Assert.assertEquals(opt, a);
     }
-	
+
 	@Test
     public void RandomRegexCaseTest(){
         Validator validator = Validator.getValidator();
@@ -37,7 +38,7 @@ public class OptionalTests {
         	RandomRegex reg1 = RandomRegex.getRandRegex();
         	Automaton a = new RegExp(reg1.getRegex(), RegExp.ALL).toAutomaton();
         	Automaton opt = BasicOperations.optional(a);
-        	Boolean bool = (!(a.getShortestExample(true).equals("")))&&((opt.getShortestExample(true).equals("")));
+        	boolean bool = (!(a.getShortestExample(true).equals("")))&&((opt.getShortestExample(true).equals("")));
             validator.addCheck(bool , "failed on regex: " + reg1.getRegex());
             bool = (opt.minus(Automaton.makeEmptyString()).equals(a));
             validator.addCheck(bool , "a.opt()-'' is not equal to a: " + reg1.getRegex());

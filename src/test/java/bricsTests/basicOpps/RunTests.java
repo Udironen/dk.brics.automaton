@@ -1,19 +1,13 @@
-package test.java.bricsTests.regexOpps;
+package test.java.bricsTests.basicOpps;
 
-import dk.brics.automaton.Automaton;
-import dk.brics.automaton.BasicOperations;
-import dk.brics.automaton.RegExp;
-import dk.brics.automaton.State;
-import dk.brics.automaton.StatePair;
-import dk.brics.automaton.Transition;
+import dk.brics.automaton.*;
+import org.junit.Assert;
+import org.junit.Test;
 import test.java.bricsTests.RandomRegex;
 import test.java.bricsTests.Validator;
 
 import java.util.ArrayList;
 import java.util.Collection;
-
-import org.junit.Assert;
-import org.junit.Test;
 
 public class RunTests {
 
@@ -42,7 +36,7 @@ public class RunTests {
     }
 	
 	
-    public void acceeptAllRandomTest(){
+    public void  acceeptAllRandomTest(){
         Validator validator = Validator.getValidator();
         Automaton automatonA = Automaton.makeAnyString();
         for (int i = 0; i < 1000; ++i){
@@ -119,7 +113,7 @@ public class RunTests {
     	init.addTransition(new Transition('t', fin));
     	Automaton automatonA = new Automaton();
     	automatonA.setInitialState(init);
-    	Collection<StatePair> c = new ArrayList<StatePair>();
+    	Collection<StatePair> c = new ArrayList<>();
     	c.add(new StatePair(init,fin));
     	automatonA.addEpsilons(c);
     	if (automatonA.getSingleton() != null ||  automatonA.isDeterministic()) {

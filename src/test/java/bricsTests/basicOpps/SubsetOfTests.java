@@ -1,4 +1,4 @@
-package test.java.bricsTests.regexOpps;
+package test.java.bricsTests.basicOpps;
 
 import dk.brics.automaton.Automaton;
 import dk.brics.automaton.BasicOperations;
@@ -134,10 +134,9 @@ public class SubsetOfTests {
         for (int i = 0; i < 1000; ++i){
         	RandomRegex reg1 = RandomRegex.getRandRegex();
         	Automaton a1 = new RegExp(reg1.getRegex(), RegExp.ALL).toAutomaton();
-        	Automaton a2 = a1;
-            validator.addCheck(BasicOperations.subsetOf(a1, a2) ,
+            validator.addCheck(BasicOperations.subsetOf(a1, a1) ,
                     reg1.getRegex()+" isn't a subset of itself");
-            validator.addCheck(BasicOperations.subsetOf(a2, a1) ,
+            validator.addCheck(BasicOperations.subsetOf(a1, a1) ,
                     reg1.getRegex()+" isn't a subset of itself");
         }
         Assert.assertTrue(validator.getMessage(), validator.isValid());
