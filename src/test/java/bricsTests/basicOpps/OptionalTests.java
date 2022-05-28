@@ -10,6 +10,8 @@ import test.java.bricsTests.Validator;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static test.java.bricsTests.BricsTestsSuite.NUM_OF_RANDOMS;
+
 public class OptionalTests {
 
 
@@ -32,7 +34,7 @@ public class OptionalTests {
 	@Test
     public void RandomRegexCaseTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
         	RandomRegex reg1 = RandomRegex.getRandRegex();
         	Automaton a = new RegExp(reg1.getRegex(), RegExp.ALL).toAutomaton();
         	Automaton opt = BasicOperations.optional(a);

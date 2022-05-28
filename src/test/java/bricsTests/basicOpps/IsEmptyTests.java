@@ -12,6 +12,8 @@ import test.java.bricsTests.Validator;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static test.java.bricsTests.BricsTestsSuite.NUM_OF_RANDOMS;
+
 public class IsEmptyTests {
 
 
@@ -56,7 +58,7 @@ public class IsEmptyTests {
     @Test
     public void randomRegexAndComplementTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             String regex = RandomRegex.getRandRegex().getRegex();
             checkrandomRegexAndComplementTest(validator, regex);
         }
@@ -74,7 +76,7 @@ public class IsEmptyTests {
     @Test
     public void randomRegexNotEmptyTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             String regex = RandomRegex.getRandRegex().getRegex();
             checkrandomRegexNotEmptyTest(validator, regex);
         }

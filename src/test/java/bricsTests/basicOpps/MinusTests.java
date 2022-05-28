@@ -8,6 +8,8 @@ import org.junit.Test;
 import test.java.bricsTests.RandomRegex;
 import test.java.bricsTests.Validator;
 
+import static test.java.bricsTests.BricsTestsSuite.NUM_OF_RANDOMS;
+
 public class MinusTests {
 
 
@@ -24,7 +26,7 @@ public class MinusTests {
     @Test
     public void minusRandomTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex firstRegex = RandomRegex.getRandRegex();
             RandomRegex secondRegex = RandomRegex.getRandRegex();
             checkMinusRandomTest(validator, firstRegex, secondRegex);
@@ -40,11 +42,16 @@ public class MinusTests {
         String noA = automatonA.getShortestExample(false);
         String yesB = automatonB.getShortestExample(true);
 
-        validator.addCheck((!automatonB.run(yesA))&&minus.run(yesA),
-                "regex: " + reg1.getRegex() + " minus " + reg2.getRegex() + " should accept " + yesA +" because it belongs to A and not to B ");
-        validator.addCheck(!minus.run(noA),
-                "regex: " + reg1.getRegex() + " minus " + reg2.getRegex() + "shouldnt accept " + noA+" because it is not in A");
-        validator.addCheck(!minus.run(yesB),
+        if (automatonB.run(yesA))
+            validator.addNegativeCheck(minus.run(yesA),
+                "regex: " + reg1.getRegex() + " minus " + reg2.getRegex() + " shouldn't accept " + yesA +" because it belongs to A and also to B ");
+        else
+            validator.addCheck(minus.run(yesA),
+                    "regex: " + reg1.getRegex() + " minus " + reg2.getRegex() + " should accept " + yesA +" because it belongs to A and not to B ");
+
+        validator.addNegativeCheck(minus.run(noA),
+                "regex: " + reg1.getRegex() + " minus " + reg2.getRegex() + "shouldn't accept " + noA+" because it is not in A");
+        validator.addNegativeCheck(minus.run(yesB),
                 "regex: " + reg1.getRegex() + " minus " + reg2.getRegex() + "shouldn't accept " + yesB+" because it is in B");
     }
     

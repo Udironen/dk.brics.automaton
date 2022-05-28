@@ -9,6 +9,8 @@ import test.java.bricsTests.Validator;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static test.java.bricsTests.BricsTestsSuite.NUM_OF_RANDOMS;
+
 public class SubsetOfTests {
 
 
@@ -24,7 +26,7 @@ public class SubsetOfTests {
     public void a1EmptyCaseTest(){
         Validator validator = Validator.getValidator();
         Automaton a1 = Automaton.makeEmpty();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
         	RandomRegex reg1 = RandomRegex.getRandRegex();
         	Automaton a2 = new RegExp(reg1.getRegex(), RegExp.ALL).toAutomaton();
             validator.addCheck(BasicOperations.subsetOf(a1, a2) ,
@@ -37,7 +39,7 @@ public class SubsetOfTests {
     public void a2EmptyCaseTest(){
         Validator validator = Validator.getValidator();
         Automaton a2 = Automaton.makeEmpty();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
         	RandomRegex reg1 = RandomRegex.getRandRegex();
         	Automaton a1 = new RegExp(reg1.getRegex(), RegExp.ALL).toAutomaton();
             validator.addCheck((!a1.isEmpty())&&(!BasicOperations.subsetOf(a1, a2)) ,
@@ -50,7 +52,7 @@ public class SubsetOfTests {
     public void a1AnyCaseTest(){
         Validator validator = Validator.getValidator();
         Automaton a1 = Automaton.makeAnyString();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
         	RandomRegex reg1 = RandomRegex.getRandRegex();
         	Automaton a2 = new RegExp(reg1.getRegex(), RegExp.ALL).toAutomaton();
             validator.addCheck((!a2.complement().isEmpty())&&(!BasicOperations.subsetOf(a1, a2)) ,
@@ -63,7 +65,7 @@ public class SubsetOfTests {
     public void a2AnyCaseTest(){
         Validator validator = Validator.getValidator();
         Automaton a2 = Automaton.makeAnyString();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
         	RandomRegex reg1 = RandomRegex.getRandRegex();
         	Automaton a1 = new RegExp(reg1.getRegex(), RegExp.ALL).toAutomaton();
             validator.addCheck(BasicOperations.subsetOf(a1, a2) ,
@@ -75,7 +77,7 @@ public class SubsetOfTests {
 	@Test
     public void a1eqa2Test(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
         	RandomRegex reg1 = RandomRegex.getRandRegex();
         	Automaton a1 = new RegExp(reg1.getRegex(), RegExp.ALL).toAutomaton();
         	Automaton a2 = new RegExp(reg1.getRegex(), RegExp.ALL).toAutomaton();
@@ -131,7 +133,7 @@ public class SubsetOfTests {
 	@Test
     public void a1eqeqa2Test(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
         	RandomRegex reg1 = RandomRegex.getRandRegex();
         	Automaton a1 = new RegExp(reg1.getRegex(), RegExp.ALL).toAutomaton();
             validator.addCheck(BasicOperations.subsetOf(a1, a1) ,

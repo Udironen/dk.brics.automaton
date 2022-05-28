@@ -9,6 +9,8 @@ import test.java.bricsTests.Validator;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import static test.java.bricsTests.BricsTestsSuite.NUM_OF_RANDOMS;
+
 public class RunTests {
 
 
@@ -16,7 +18,7 @@ public class RunTests {
 	@Test
 	public void acceptRegexRandomTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
         	RandomRegex reg1 = RandomRegex.getRandRegex();
         	Automaton a1 = new RegExp(reg1.getRegex(), RegExp.ALL).toAutomaton();
             checkStringInAutomate(a1, validator, a1.getShortestExample(true));
@@ -27,7 +29,7 @@ public class RunTests {
 	@Test
 	public void rejectRegexRandomTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
         	RandomRegex reg1 = RandomRegex.getRandRegex();
         	Automaton a1 = new RegExp(reg1.getRegex(), RegExp.ALL).toAutomaton();
             checkStringNotInAutomate(a1, validator, a1.getShortestExample(false));
@@ -39,7 +41,7 @@ public class RunTests {
     public void  acceeptAllRandomTest(){
         Validator validator = Validator.getValidator();
         Automaton automatonA = Automaton.makeAnyString();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             String s = RandomRegex.getRandString();
             checkStringInAutomate(automatonA, validator, s);
         }
@@ -55,7 +57,7 @@ public class RunTests {
     public void emptySetRandomTest(){
         Validator validator = Validator.getValidator();
         Automaton automatonA = Automaton.makeEmpty();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             String s = RandomRegex.getRandString();
             checkStringNotInAutomate(automatonA, validator, s);
         }
@@ -70,7 +72,7 @@ public class RunTests {
 	@Test
     public void SingletonRandomTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             String s = RandomRegex.getRandString();
             Automaton automatonA = Automaton.makeString(s);
             checkStringInAutomate(automatonA, validator, s);
