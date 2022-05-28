@@ -10,15 +10,17 @@ import test.java.bricsTests.Validator;
 
 import java.util.List;
 
-public class ConcatinationTests {
+import static test.java.bricsTests.BricsTestsSuite.NUM_OF_RANDOMS;
 
+public class ConcatinationTests {
+    
     /***
      * this test check if concatination of strings that belong to the first and second regexes domain of the concatination is part of the new concatination domain
      */
     @Test
     public void checkConcatTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex firstRegex = RandomRegex.getRandRegex();
             RandomRegex secondRegex = RandomRegex.getRandRegex();
             checkConcat(validator, firstRegex, secondRegex);
@@ -33,7 +35,7 @@ public class ConcatinationTests {
     @Test
     public void checkFirstAndSecondRegexNotInConcat(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex firstRegex = RandomRegex.getRandRegex();
             RandomRegex secondRegex = RandomRegex.getRandRegex();
             checkFirstRegexOfConcatNotInConcatination(validator, firstRegex, secondRegex);
@@ -49,7 +51,7 @@ public class ConcatinationTests {
     @Test
     public void checkSecondOfconcatIsEmptyTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex firstRegex = RandomRegex.getRandRegex();
             RandomRegex secondRegex = RandomRegex.getEmptyRegex();
             Automaton automatonA = new RegExp(firstRegex.getRegex(), RegExp.ALL).toAutomaton();
@@ -68,7 +70,7 @@ public class ConcatinationTests {
     @Test
     public void checkConcatIsEmptyTest2(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex reg1 = RandomRegex.getRandRegex();
             RandomRegex reg2 = RandomRegex.getEmptyRegex();
             checkFirstRegexOfConcatNotInConcatination(validator, reg1, reg2);
@@ -88,7 +90,7 @@ public class ConcatinationTests {
     @Test
     public void checkConcatIsEmptyTest3(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex firstRegex = RandomRegex.getEmptyRegex();
             RandomRegex secondRegex = RandomRegex.getRandRegex();
             checkSecondRegexOfConcatNotInConcatination(validator, firstRegex, secondRegex);
@@ -128,7 +130,7 @@ public class ConcatinationTests {
     @Test
     public void checkFirstOfConcatIsSingletonTest2(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex reg1 = RandomRegex.getRandRegexSingleton();
             RandomRegex reg2 = RandomRegex.getRandRegex();
             checkFirstRegexOfConcatNotInConcatination(validator, reg1, reg2);
@@ -144,7 +146,7 @@ public class ConcatinationTests {
     @Test
     public void checkSecondOfConcatIsSingletonTest2(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex reg1 = RandomRegex.getRandRegex();
             RandomRegex reg2 = RandomRegex.getRandRegexSingleton();
             checkFirstRegexOfConcatNotInConcatination(validator, reg1, reg2);
@@ -160,7 +162,7 @@ public class ConcatinationTests {
     @Test
     public void checkFirstOfConcatIsSingletonTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex firstRegex = RandomRegex.getRandRegexSingleton();
             RandomRegex secondRegex = RandomRegex.getRandRegex();
             checkConcat(validator, firstRegex, secondRegex);
@@ -176,7 +178,7 @@ public class ConcatinationTests {
     @Test
     public void checkBothRegexesOfConcatAreSingletonTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex firstRegex = RandomRegex.getRandRegexSingleton();
             RandomRegex secondRegex = RandomRegex.getRandRegexSingleton();
             checkConcat(validator, firstRegex, secondRegex);
@@ -192,7 +194,7 @@ public class ConcatinationTests {
     @Test
     public void checkBothRegexesOfConcatAreSingletonTest2(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex reg1 = RandomRegex.getRandRegexSingleton();
             RandomRegex reg2 = RandomRegex.getRandRegexSingleton();
             checkFirstRegexOfConcatNotInConcatination(validator, reg1, reg2);
@@ -208,7 +210,7 @@ public class ConcatinationTests {
     @Test
     public void checkBothRegexesOfConcatAreTheSameSingletonTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex firstRegex = RandomRegex.getRandRegexSingleton();
             checkConcat(validator, firstRegex, firstRegex);
         }
@@ -222,7 +224,7 @@ public class ConcatinationTests {
     @Test
     public void checkBothRegexesOfConcatAreTheSameSingletonTest2(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex reg1 = RandomRegex.getRandRegexSingleton();
             checkFirstRegexOfConcatNotInConcatination(validator, reg1, reg1);
         }
@@ -239,7 +241,7 @@ public class ConcatinationTests {
     @Test
     public void checkSecondOfConcatIsEmptyStringTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex firstRegex = RandomRegex.getRandRegex();
             RandomRegex secondRegex = RandomRegex.getEmptyStringRegex();
             checkConcat(validator, firstRegex, secondRegex);
@@ -255,7 +257,7 @@ public class ConcatinationTests {
     @Test
     public void checkSecondOfconcatIsEmptyStringTest2(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex reg1 = RandomRegex.getRandRegex();
             RandomRegex reg2 = RandomRegex.getEmptyStringRegex();
             Automaton automatonA = new RegExp(reg1.getRegex(), RegExp.ALL).toAutomaton();
@@ -275,7 +277,7 @@ public class ConcatinationTests {
     @Test
     public void checkFirstOfconcatIsEmptyStringTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex reg1 = RandomRegex.getEmptyStringRegex();
             RandomRegex reg2 = RandomRegex.getRandRegex();
             Automaton automatonA = new RegExp(reg1.getRegex(), RegExp.ALL).toAutomaton();
@@ -338,7 +340,7 @@ public class ConcatinationTests {
     @Test
     public void checkFirstOfconcatContainsEmptyStringTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex firstRegex = RandomRegex.getRandRegexWithEmptyString();
             RandomRegex secondRegex = RandomRegex.getRandRegex();
             checkConcat(validator, firstRegex, secondRegex);
@@ -354,7 +356,7 @@ public class ConcatinationTests {
     @Test
     public void checkSecondOfconcatContainsEmptyStringTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex firstRegex = RandomRegex.getRandRegexWithEmptyString();
             RandomRegex secondRegex = RandomRegex.getRandRegex();
             checkConcat(validator, firstRegex, secondRegex);
@@ -370,7 +372,7 @@ public class ConcatinationTests {
     @Test
     public void checkBothRegexesOfconcatContainsEmptyStringTest() {
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i) {
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i) {
             RandomRegex firstRegex = RandomRegex.getRandRegexWithEmptyString();
             RandomRegex secondRegex = RandomRegex.getRandRegexWithEmptyString();
             checkConcat(validator, firstRegex, secondRegex);

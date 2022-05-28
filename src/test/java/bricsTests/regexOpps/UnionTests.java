@@ -10,6 +10,8 @@ import test.java.bricsTests.Validator;
 
 import java.util.List;
 
+import static test.java.bricsTests.BricsTestsSuite.NUM_OF_RANDOMS;
+
 
 public class UnionTests {
 
@@ -19,7 +21,7 @@ public class UnionTests {
     @Test
     public void checkFirstOfUnionTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex firstRegex = RandomRegex.getRandRegex();
             RandomRegex secondRegex = RandomRegex.getRandRegex();
             checkFirstRegexOfUnion(validator, firstRegex, secondRegex, true);
@@ -33,7 +35,7 @@ public class UnionTests {
     @Test
     public void checkSecondOfUnionTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex firstRegex = RandomRegex.getRandRegex();
             RandomRegex secondRegex = RandomRegex.getRandRegex();
             checkFirstRegexOfUnion(validator, firstRegex, secondRegex, false);
@@ -47,7 +49,7 @@ public class UnionTests {
     @Test
     public void checkFirstAndSecondComplementNotInUnion(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex firstRegex = RandomRegex.getRandRegex();
             RandomRegex secondRegex = RandomRegex.getRandRegex();
             checkComplementRegexOfUnionNotInUnion(validator, firstRegex, secondRegex);
@@ -62,7 +64,7 @@ public class UnionTests {
     @Test
     public void checkSecondOfUnionIsEmptyTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex firstRegex = RandomRegex.getRandRegex();
             RandomRegex secondRegex = RandomRegex.getEmptyRegex();
             checkFirstRegexOfUnion(validator, firstRegex, secondRegex, true);
@@ -77,7 +79,7 @@ public class UnionTests {
     @Test
     public void checkSecondOfUnionIsEmptyTest2(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex reg1 = RandomRegex.getRandRegex();
             RandomRegex reg2 = RandomRegex.getEmptyRegex();
             checkComplementRegexOfUnionNotInUnion(validator, reg1, reg2);
@@ -92,7 +94,7 @@ public class UnionTests {
     @Test
     public void checkFirstOfUnionIsEmptyTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex firstRegex = RandomRegex.getEmptyRegex();
             RandomRegex secondRegex = RandomRegex.getRandRegex();
             checkFirstRegexOfUnion(validator, firstRegex, secondRegex, false);
@@ -107,7 +109,7 @@ public class UnionTests {
     @Test
     public void checkFirstOfUnionIsEmptyTest2(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex reg1 = RandomRegex.getEmptyRegex();
             RandomRegex reg2 = RandomRegex.getRandRegex();
             checkComplementRegexOfUnionNotInUnion(validator, reg1, reg2);
@@ -124,7 +126,7 @@ public class UnionTests {
         Validator validator = Validator.getValidator();
         RandomRegex firstRegex = RandomRegex.getEmptyRegex();
         RandomRegex secondRegex = RandomRegex.getEmptyRegex();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             checkComplementRegexOfUnionNotInUnion(validator, firstRegex, secondRegex);
         }
         Assert.assertTrue(validator.getMessage(), validator.isValid());
@@ -152,7 +154,7 @@ public class UnionTests {
     @Test
     public void checkFirstOfUnionIsSingletonTest2(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex reg1 = RandomRegex.getRandRegexSingleton();
             RandomRegex reg2 = RandomRegex.getRandRegex();
             checkComplementRegexOfUnionNotInUnion(validator, reg1, reg2);
@@ -167,7 +169,7 @@ public class UnionTests {
     @Test
     public void checkSecondOfUnionIsSingletonTest2(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex reg1 = RandomRegex.getRandRegex();
             RandomRegex reg2 = RandomRegex.getRandRegexSingleton();
             checkComplementRegexOfUnionNotInUnion(validator, reg1, reg2);
@@ -182,7 +184,7 @@ public class UnionTests {
     @Test
     public void checkFirstOfUnionIsSingletonTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex firstRegex = RandomRegex.getRandRegexSingleton();
             RandomRegex secondRegex = RandomRegex.getRandRegex();
             checkFirstRegexOfUnion(validator, firstRegex, secondRegex, false);
@@ -198,7 +200,7 @@ public class UnionTests {
     @Test
     public void checkSecondOfUnionIsSingletonTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex firstRegex = RandomRegex.getRandRegexSingleton();
             RandomRegex secondRegex = RandomRegex.getRandRegex();
             checkFirstRegexOfUnion(validator, firstRegex, secondRegex, false);
@@ -214,7 +216,7 @@ public class UnionTests {
     @Test
     public void checkBothRegexesOfUnionAreSingletonTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex firstRegex = RandomRegex.getRandRegexSingleton();
             RandomRegex secondRegex = RandomRegex.getRandRegexSingleton();
             checkFirstRegexOfUnion(validator, firstRegex, secondRegex, false);
@@ -230,7 +232,7 @@ public class UnionTests {
     @Test
     public void checkBothRegexesOfUnionAreSingletonTest2(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex reg1 = RandomRegex.getRandRegexSingleton();
             RandomRegex reg2 = RandomRegex.getRandRegexSingleton();
             checkComplementRegexOfUnionNotInUnion(validator, reg1, reg2);
@@ -245,7 +247,7 @@ public class UnionTests {
     @Test
     public void checkBothRegexesOfUnionAreTheSameSingletonTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex firstRegex = RandomRegex.getRandRegexSingleton();
             checkFirstRegexOfUnion(validator, firstRegex, firstRegex, true);
         }
@@ -259,7 +261,7 @@ public class UnionTests {
     @Test
     public void checkBothRegexesOfUnionAreTheSameSingletonTest2(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex reg1 = RandomRegex.getRandRegexSingleton();
             checkComplementRegexOfUnionNotInUnion(validator, reg1, reg1);
         }
@@ -276,7 +278,7 @@ public class UnionTests {
     @Test
     public void checkSecondOfUnionIsEmptyStringTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex firstRegex = RandomRegex.getRandRegex();
             RandomRegex secondRegex = RandomRegex.getEmptyStringRegex();
             checkFirstRegexOfUnion(validator, firstRegex, secondRegex, true);
@@ -292,7 +294,7 @@ public class UnionTests {
     @Test
     public void checkSecondOfUnionIsEmptyStringTest2(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex reg1 = RandomRegex.getRandRegex();
             RandomRegex reg2 = RandomRegex.getEmptyStringRegex();
             checkComplementRegexOfUnionNotInUnion(validator, reg1, reg2);
@@ -307,7 +309,7 @@ public class UnionTests {
     @Test
     public void checkFirstOfUnionIsEmptyStringTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex firstRegex = RandomRegex.getEmptyStringRegex();
             RandomRegex secondRegex = RandomRegex.getRandRegex();
             checkFirstRegexOfUnion(validator, firstRegex, secondRegex, false);
@@ -323,7 +325,7 @@ public class UnionTests {
     @Test
     public void checkFirstOfUnionIsEmptyStringTest2(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex reg1 = RandomRegex.getEmptyStringRegex();
             RandomRegex reg2 = RandomRegex.getRandRegex();
             checkComplementRegexOfUnionNotInUnion(validator, reg1, reg2);
@@ -340,7 +342,7 @@ public class UnionTests {
         Validator validator = Validator.getValidator();
         RandomRegex firstRegex = RandomRegex.getEmptyStringRegex();
         RandomRegex secondRegex = RandomRegex.getEmptyStringRegex();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             checkComplementRegexOfUnionNotInUnion(validator, firstRegex, secondRegex);
         }
         Assert.assertTrue(validator.getMessage(), validator.isValid());
@@ -369,7 +371,7 @@ public class UnionTests {
     @Test
     public void checkSecondOfUnionContainsEmptyStringTest2(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex reg1 = RandomRegex.getRandRegex();
             RandomRegex reg2 = RandomRegex.getRandRegexWithEmptyString();
             checkComplementRegexOfUnionNotInUnion(validator, reg1, reg2);
@@ -384,7 +386,7 @@ public class UnionTests {
     @Test
     public void checkFirstOfUnionContainsEmptyStringTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex firstRegex = RandomRegex.getRandRegexWithEmptyString();
             RandomRegex secondRegex = RandomRegex.getRandRegex();
             checkFirstRegexOfUnion(validator, firstRegex, secondRegex, false);
@@ -400,7 +402,7 @@ public class UnionTests {
     @Test
     public void checkSecondOfUnionContainsEmptyStringTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex firstRegex = RandomRegex.getRandRegex();
             RandomRegex secondRegex = RandomRegex.getRandSingletonWithEmptyString();
             checkFirstRegexOfUnion(validator, firstRegex, secondRegex, false);
@@ -416,7 +418,7 @@ public class UnionTests {
     @Test
     public void checkBothRegexesOfUnionContainsEmptyStringTest() {
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i) {
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i) {
             RandomRegex firstRegex = RandomRegex.getRandRegexWithEmptyString();
             RandomRegex secondRegex = RandomRegex.getRandRegexWithEmptyString();
             checkFirstRegexOfUnion(validator, firstRegex, secondRegex, false);

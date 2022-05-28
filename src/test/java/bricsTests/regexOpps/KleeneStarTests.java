@@ -10,6 +10,8 @@ import test.java.bricsTests.Validator;
 import java.util.ArrayList;
 import java.util.List;
 
+import static test.java.bricsTests.BricsTestsSuite.NUM_OF_RANDOMS;
+
 public class KleeneStarTests {
 
     /***
@@ -18,7 +20,7 @@ public class KleeneStarTests {
     @Test
     public void kleeneStarTest() {
         Validator validator = Validator.getValidator();
-        for (int j = 0; j < 1000; ++j)
+        for (int j = 0; j < NUM_OF_RANDOMS; ++j)
         {
             RandomRegex regex1 = RandomRegex.getRandRegex();
             checkKleeneStar(validator, regex1);
@@ -32,7 +34,7 @@ public class KleeneStarTests {
     @Test
     public void kleeneStarWithEmptyStringTest() {
         Validator validator = Validator.getValidator();
-        for (int j = 0; j < 1000; ++j)
+        for (int j = 0; j < NUM_OF_RANDOMS; ++j)
         {
             RandomRegex regex1 = RandomRegex.getRandRegexWithEmptyString();
             checkKleeneStar(validator, regex1);
@@ -46,7 +48,7 @@ public class KleeneStarTests {
     @Test
     public void kleeneStarOfSingletonTest() {
         Validator validator = Validator.getValidator();
-        for (int j = 0; j < 1000; ++j)
+        for (int j = 0; j < NUM_OF_RANDOMS; ++j)
         {
             RandomRegex regex1 = RandomRegex.getRandRegexSingleton();
             checkKleeneStar(validator, regex1);

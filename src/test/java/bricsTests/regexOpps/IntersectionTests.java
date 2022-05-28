@@ -8,6 +8,8 @@ import org.junit.Test;
 import test.java.bricsTests.RandomRegex;
 import test.java.bricsTests.Validator;
 
+import static test.java.bricsTests.BricsTestsSuite.NUM_OF_RANDOMS;
+
 public class IntersectionTests {
 
     /***
@@ -17,7 +19,7 @@ public class IntersectionTests {
     @Test
     public void checkFirstOfUnionTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i) {
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i) {
             RandomRegex firstRegex;
             RandomRegex secondRegex;
             RandomRegex sharedRegex;
@@ -42,7 +44,7 @@ public class IntersectionTests {
     @Test
     public void checksecondOfIntersectionIsEmptyTest2(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex reg1 = RandomRegex.getRandRegex();
             RandomRegex reg2 = RandomRegex.getEmptyRegex();
             Automaton automatonA = new RegExp(reg1.getRegex(), RegExp.ALL).toAutomaton();
@@ -60,7 +62,7 @@ public class IntersectionTests {
     @Test
     public void checkFirstOfIntersectionIsEmptyTest2(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex reg1 = RandomRegex.getEmptyRegex();
             RandomRegex reg2 = RandomRegex.getRandRegex();
             Automaton automatonA = new RegExp(reg1.getRegex(), RegExp.ALL).toAutomaton();
@@ -124,7 +126,7 @@ public class IntersectionTests {
     @Test
     public void checkRegexInIntersectionContainSingletonsTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i) {
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i) {
             RandomRegex sharedRegex ;
             RandomRegex secondRegex;
             do {
@@ -146,7 +148,7 @@ public class IntersectionTests {
     @Test
     public void checkRegexInIntersectionContainSingletonsTest2(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i) {
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i) {
             RandomRegex sharedRegex ;
             RandomRegex firstRegex;
             do {
@@ -183,7 +185,7 @@ public class IntersectionTests {
     @Test
     public void checkBothRegexesOfIntersectionAreTheSameSingletonTest2(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex reg1 = RandomRegex.getRandRegexSingleton();
             checkIntersection(validator, reg1, reg1, reg1);
         }
@@ -219,7 +221,7 @@ public class IntersectionTests {
     @Test
     public void checkSecondOfIntersectionContainsEmptyStringTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex firstRegex;
             RandomRegex secondRegex;
             RandomRegex sharedRegex;
@@ -245,7 +247,7 @@ public class IntersectionTests {
     @Test
     public void checkFirstOfIntersectionContainsEmptyStringTest(){
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i){
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i){
             RandomRegex firstRegex;
             RandomRegex secondRegex;
             RandomRegex sharedRegex;
@@ -271,7 +273,7 @@ public class IntersectionTests {
     @Test
     public void checkBothRegexesOfIntersectionContainsEmptyStringTest() {
         Validator validator = Validator.getValidator();
-        for (int i = 0; i < 1000; ++i) {
+        for (int i = 0; i < NUM_OF_RANDOMS; ++i) {
             RandomRegex firstRegex;
             RandomRegex secondRegex;
             RandomRegex sharedRegex;

@@ -9,10 +9,10 @@ import test.java.bricsTests.Validator;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
+import static test.java.bricsTests.BricsTestsSuite.NUM_OF_RANDOMS;
 
 public class ComplementTests {
 
-    private final static int NUM_OF_RANDOMS = 1;
 
     /***
      * this test checks that complement of a random regex behaves as expected
@@ -114,7 +114,7 @@ public class ComplementTests {
         Automaton automatonA = new RegExp(regex.getRegex(), RegExp.ALL).toAutomaton();
         Automaton complimentA = automatonA.complement();
 
-        for (String str : RandomRegex.getRandomStrings(1000)) {
+        for (String str : RandomRegex.getRandomStrings(NUM_OF_RANDOMS)) {
             if (automatonA.run(str))
                 validator.addNegativeCheck(complimentA.run(str),
                         "complement of " + regex.getRegex() + " accept " + str + " although it shouldn't have");
