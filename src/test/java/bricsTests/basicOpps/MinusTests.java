@@ -43,9 +43,9 @@ public class MinusTests {
         validator.addCheck((!automatonB.run(yesA))&&minus.run(yesA),
                 "regex: " + reg1.getRegex() + " minus " + reg2.getRegex() + " should accept " + yesA +" because it belongs to A and not to B ");
         validator.addCheck(!minus.run(noA),
-                "regex: " + reg1.getRegex() + " and " + reg2.getRegex() + "shouldnt accept " + noA+" because it is not in A");
+                "regex: " + reg1.getRegex() + " minus " + reg2.getRegex() + "shouldnt accept " + noA+" because it is not in A");
         validator.addCheck(!minus.run(yesB),
-                "regex: " + reg1.getRegex() + " and " + reg2.getRegex() + "shouldn't accept " + yesB+" because it is in B");
+                "regex: " + reg1.getRegex() + " minus " + reg2.getRegex() + "shouldn't accept " + yesB+" because it is in B");
     }
     
     @Test
